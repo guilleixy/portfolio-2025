@@ -11,7 +11,9 @@ export default function About() {
   const gradientTopRef = useRef<HTMLDivElement>(null);
   const gradientBottomRef = useRef<HTMLDivElement>(null);
   const camera = useThreeStore((state) => state.camera);
-  console.log(camera);
+  const scene = useThreeStore((state) => state.scene);
+  const modelRef = useThreeStore((state) => state.model);
+  const redLightRef = useThreeStore((state) => state.redLight);
 
   useGSAP(
     () => {
@@ -45,6 +47,16 @@ export default function About() {
           start: "top center",
           end: "center center",
           scrub: true,
+        },
+      });
+      gsap.to(scene, {
+        environmentIntensity: 0.01,
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top center",
+          end: "center center",
+          scrub: true,
+          markers: true,
         },
       });
     },

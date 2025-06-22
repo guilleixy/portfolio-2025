@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { MeshStandardMaterial, Mesh, Object3D } from "three";
 import { useThree } from "@react-three/fiber";
 
-export default function Eva01() {
+export default function Eva01({ ref }: { ref?: React.Ref<Object3D> }) {
   const { nodes } = useGLTF("models/eva01-draco-v1.glb");
   const { viewport } = useThree();
 
@@ -16,9 +16,8 @@ export default function Eva01() {
       }),
     []
   );
-
   return (
-    <group rotation={[0, Math.PI / 2, 0]}>
+    <group rotation={[0, Math.PI / 2, 0]} ref={ref}>
       {Object.values(nodes)
         .filter((node: any) => node.type === "Mesh")
         .map((mesh: any) => (

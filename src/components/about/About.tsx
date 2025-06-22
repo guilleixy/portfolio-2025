@@ -13,22 +13,22 @@ export default function About() {
   useGSAP(
     () => {
       gsap.to(gradientTopRef.current, {
-        y: -100,
+        y: -30,
         ease: "power1.in",
         scrollTrigger: {
           trigger: triggerRef.current,
-          start: "top bottom",
-          end: "bottom top",
+          start: "top center",
+          end: "center center",
           scrub: true,
         },
       });
       gsap.to(gradientBottomRef.current, {
-        y: 100,
+        y: 30,
         ease: "power1.in",
         scrollTrigger: {
           trigger: triggerRef.current,
-          start: "top bottom",
-          end: "bottom top",
+          start: "top center",
+          end: "center center",
           scrub: true,
         },
       });
@@ -42,15 +42,15 @@ export default function About() {
         <div
           ref={gradientTopRef}
           id="two-sides-gradient-top"
-          className="bg-gradient-to-b from-[var(--color-black)] to-[var(--color-red)] h-64 w-full z-1 relative"
+          className="bg-gradient-to-b from-[var(--color-black)] to-[var(--color-red)] h-104 w-full z-1 relative "
         ></div>
-        <p className="absolute flex inset-0 items-center justify-center z-0">
+        <p className="absolute flex inset-0 items-center justify-center z-0 text-9xl text-[var(--color-state)] tracking-widest transform scale-y-95">
           TWO SIDES
         </p>
         <div
           ref={gradientBottomRef}
           id="two-sides-gradient-bottom"
-          className="bg-gradient-to-b from-[var(--color-state)] to-[var(--color-black)] h-64 w-full z-1 relative"
+          className="bg-gradient-to-b from-[var(--color-state)] to-[var(--color-black)] h-104 w-full z-1 relative"
         ></div>
       </div>
 

@@ -10,9 +10,10 @@ export default function RedMouseLight() {
   useFrame(() => {
     if (lightRef.current) {
       // Convert normalized mouse coordinates to world coordinates
-      const vec = new THREE.Vector3(mouse.x, mouse.y, 0.5);
+      const vec = new THREE.Vector3(mouse.x, mouse.y, 0.7);
       vec.unproject(camera);
       lightRef.current.position.lerp(vec, 0.2); // Smooth follow
+      console.log("Light position:", lightRef.current.position);
     }
   });
 
@@ -24,6 +25,7 @@ export default function RedMouseLight() {
       distance={2}
       position={[10, 0, 10]}
       castShadow
+      decay={1}
     />
   );
 }

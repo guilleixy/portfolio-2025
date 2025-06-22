@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
-import { MeshStandardMaterial } from "three";
+import { MeshStandardMaterial, Mesh, Object3D } from "three";
 import { useThree } from "@react-three/fiber";
 
 export default function Eva01() {
-  const { nodes } = useGLTF("models/eva01-draco-v1.glb", true);
+  const { nodes } = useGLTF("models/eva01-draco-v1.glb");
   const { viewport } = useThree();
-  // Material metálico personalizado
-  const metallicMaterial = new MeshStandardMaterial({
-    color: 0xffffff,
-    metalness: 1,
-    roughness: 0.2,
-  });
-  //<group scale={viewport.width / 2} position={[0, -1, 0]}></group>
+
+  const metallicMaterial = useMemo(
+    () =>
+      new MeshStandardMaterial({
+        color: 0x000000,
+        metalness: 1,
+        roughness: 0,
+      }),
+    []
+  );
+
   return (
-    <group>
+    <group rotation={[0, Math.PI / 2, 0]}>
       {Object.values(nodes)
         .filter((node: any) => node.type === "Mesh")
         .map((mesh: any) => (
@@ -31,7 +35,6 @@ export default function Eva01() {
             {/* <primitive object={metallicMaterial} attach="material" /> */}
           </mesh>
         ))}
-      r
     </group>
   );
 }

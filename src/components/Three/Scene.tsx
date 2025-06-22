@@ -19,66 +19,17 @@ export default function Scene() {
   const cameraRef = useRef<any>(null);
   const [cameraReady, setCameraReady] = useState(false);
 
-  useEffect(() => {
-    if (!cameraReady) return;
-
-    const creative = document.getElementById("creative");
-    if (!creative) {
-      console.error("Element with id 'creative' not found");
-      return;
-    }
-
-    const ctx = gsap.context(() => {
-      gsap.to(creative, {
-        color: "red",
-        scrollTrigger: {
-          trigger: creative,
-          start: "top center",
-          end: "bottom center",
-          scrub: true,
-          markers: true,
-          // onEnter: () => {
-          //   gsap.to(cameraRef.current.position, {
-          //     x: 5,
-          //     y: 5,
-          //     z: 10,
-          //     duration: 1.5,
-          //     ease: "power2.inOut",
-          //   });
-          // },
-          onLeaveBack: () => {
-            gsap.to(cameraRef.current.position, {
-              x: 0,
-              y: 0,
-              z: 5,
-              duration: 1.5,
-              ease: "power2.inOut",
-            });
-          },
-          onUpdate: (self) => {
-            const progress = parseFloat(self.progress.toFixed(2));
-            console.log(`Scroll progress: ${progress}`);
-            cameraRef.current.position.z = 5 + progress * 5;
-          },
-        },
-      });
-    });
-
-    return () => {
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, [cameraReady]);
-
   return (
-    <Canvas>
+    <Canvas className="fixed">
       <PerspectiveCamera
         ref={cameraRef}
         makeDefault
         onUpdate={() => setCameraReady(true)}
+        position={[-1, 7, 1]}
+        rotation={[0.5, 0, 0]}
       />
-
       <ambientLight intensity={0.5} />
+      <Environment preset="city" background={false} />
       <directionalLight
         position={[10, 10, 5]}
         intensity={0.01}

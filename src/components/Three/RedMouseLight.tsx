@@ -13,7 +13,6 @@ export default function RedMouseLight() {
       const vec = new THREE.Vector3(mouse.x, mouse.y, 0.7);
       vec.unproject(camera);
       lightRef.current.position.lerp(vec, 0.2); // Smooth follow
-      console.log("Light position:", lightRef.current.position);
     }
   });
 

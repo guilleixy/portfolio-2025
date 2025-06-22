@@ -3,15 +3,19 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-
+import { useThreeStore } from "@/store/useThreeStore";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const triggerRef = useRef<HTMLDivElement>(null);
   const gradientTopRef = useRef<HTMLDivElement>(null);
   const gradientBottomRef = useRef<HTMLDivElement>(null);
+  const camera = useThreeStore((state) => state.camera);
+  console.log(camera);
+
   useGSAP(
     () => {
+      if (!camera) return;
       gsap.to(gradientTopRef.current, {
         y: -30,
         ease: "power1.in",
@@ -32,8 +36,19 @@ export default function About() {
           scrub: true,
         },
       });
+      gsap.to(camera.position, {
+        x: 1,
+        y: 2,
+        z: 5,
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top center",
+          end: "center center",
+          scrub: true,
+        },
+      });
     },
-    { scope: triggerRef }
+    { scope: triggerRef, dependencies: [camera] }
   );
   return (
     <section id="about" className="h-screen relative">

@@ -12,13 +12,20 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import Eva01 from "./Eva01";
 import RedMouseLight from "./RedMouseLight";
+import { useThreeStore } from "@/store/useThreeStore";
+import { log } from "console";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Scene() {
   const cameraRef = useRef<any>(null);
   const [cameraReady, setCameraReady] = useState(false);
-
+  const setCamera = useThreeStore((state) => state.setCamera);
+  useEffect(() => {
+    if (!cameraReady || !cameraRef.current) return;
+    console.log("Camera is ready");
+    setCamera(cameraRef.current);
+  }, [cameraReady]);
   return (
     <Canvas className="fixed">
       <PerspectiveCamera

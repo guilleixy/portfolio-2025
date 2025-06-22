@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
   Environment,
   PerspectiveCamera,
+  Loader,
 } from "@react-three/drei";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -33,18 +34,23 @@ export default function Scene() {
     setRedLight(redLightRef.current);
   }, [cameraReady]);
   return (
-    <Canvas className="fixed">
-      <PerspectiveCamera
-        ref={cameraRef}
-        makeDefault
-        onUpdate={() => setCameraReady(true)}
-        position={[-1, 7, 1]}
-        rotation={[0.5, 0, 0]}
-      />
-      <Environment preset="city" />
-      <RedMouseLight lightRef={redLightRef} />
-      <Eva01 ref={modelRef} />
-      <SceneSetup />
-    </Canvas>
+    <>
+      <Canvas className="fixed">
+        <Suspense fallback={null}>
+          <PerspectiveCamera
+            ref={cameraRef}
+            makeDefault
+            onUpdate={() => setCameraReady(true)}
+            position={[-1, 7, 1]}
+            rotation={[0.5, 0, 0]}
+          />
+          <Environment preset="city" />
+          <RedMouseLight lightRef={redLightRef} />
+          <Eva01 ref={modelRef} />
+          <SceneSetup />
+        </Suspense>
+      </Canvas>
+      <Loader />
+    </>
   );
 }

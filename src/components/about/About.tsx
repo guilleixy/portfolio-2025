@@ -56,7 +56,6 @@ export default function About() {
           start: "top center",
           end: "center center",
           scrub: true,
-          markers: true,
         },
       });
     },

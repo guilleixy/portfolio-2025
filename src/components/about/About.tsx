@@ -38,17 +38,17 @@ export default function About() {
           scrub: true,
         },
       });
-      gsap.to(camera.position, {
-        x: 1,
-        y: 2,
-        z: 5,
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top center",
-          end: "center center",
-          scrub: true,
-        },
-      });
+      // gsap.to(camera.position, {
+      //   x: 1,
+      //   y: 2,
+      //   z: 5,
+      //   scrollTrigger: {
+      //     trigger: triggerRef.current,
+      //     start: "top center",
+      //     end: "center center",
+      //     scrub: true,
+      //   },
+      // });
       gsap.to(scene, {
         environmentIntensity: 0.01,
         scrollTrigger: {
@@ -62,25 +62,27 @@ export default function About() {
     { scope: triggerRef, dependencies: [camera] }
   );
   return (
-    <section id="about" className="h-screen relative">
-      <p>I'd say I have</p>
-      <div ref={triggerRef} className="relative">
-        <div
-          ref={gradientTopRef}
-          id="two-sides-gradient-top"
-          className="bg-gradient-to-b from-[var(--color-black)] to-[var(--color-red)] h-104 w-full z-1 relative "
-        ></div>
-        <p className="absolute flex inset-0 items-center justify-center z-0 text-9xl text-[var(--color-state)] tracking-widest transform scale-y-95">
-          TWO SIDES
-        </p>
-        <div
-          ref={gradientBottomRef}
-          id="two-sides-gradient-bottom"
-          className="bg-gradient-to-b from-[var(--color-state)] to-[var(--color-black)] h-104 w-full z-1 relative"
-        ></div>
-      </div>
+    <section id="about" className="">
+      <article className="h-screen relative">
+        <p>I'd say I have</p>
+        <div ref={triggerRef} className="relative">
+          <div
+            ref={gradientTopRef}
+            id="two-sides-gradient-top"
+            className="bg-gradient-to-b from-[var(--color-black)] to-[var(--color-red)] h-104 w-full z-1 relative "
+          ></div>
+          <p className="absolute flex inset-0 items-center justify-center z-0 text-9xl text-[var(--color-state)] tracking-widest transform scale-y-95">
+            TWO SIDES
+          </p>
+          <div
+            ref={gradientBottomRef}
+            id="two-sides-gradient-bottom"
+            className="bg-gradient-to-b from-[var(--color-state)] to-[var(--color-black)] h-104 w-full z-1 relative"
+          ></div>
+        </div>
+      </article>
 
-      <article className="">
+      <article className="h-screen mt-72">
         <p>
           As an aspiring software engineer, I focus on refining my programming
           skills at every level of abstraction to write clean and maintainable

@@ -17,7 +17,7 @@ export default function Eva01({ ref }: { ref?: React.Ref<Object3D> }) {
     []
   );
   return (
-    <group rotation={[0, Math.PI / 2, 0]} ref={ref}>
+    <group rotation={[0, Math.PI / 2, 0]} ref={ref} scale={0.5}>
       {Object.values(nodes)
         .filter((node: any) => node.type === "Mesh")
         .map((mesh: any) => (

@@ -42,11 +42,11 @@ export default function Scene() {
             ref={cameraRef}
             makeDefault
             onUpdate={() => setCameraReady(true)}
-            position={[-1, 7, 1]}
+            position={[-0.5, 3.3, 0.5]}
             rotation={[0.5, 0, 0]}
           />
           <Environment preset="city" />
-          <RedMouseLight />
+          <RedMouseLight lightRef={redLightRef} />
           <Eva01 ref={modelRef} />
           <SceneSetup />
           {/* <EffectComposer>

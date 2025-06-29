@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
 
 export default function SaberLight({
   lightRef,
@@ -8,10 +9,10 @@ export default function SaberLight({
   lightRef?: React.RefObject<any>;
 }) {
   const { mouse, camera } = useThree();
-  const cylinderRef = useRef<THREE.Mesh>(null);
-
+  RectAreaLightUniformsLib.init();
+  const pointLightRef = useRef<THREE.PointLight | THREE.RectAreaLight>(null);
   useFrame(() => {
-    if (!camera || !lightRef?.current || !cylinderRef.current) return;
+    if (!camera || !lightRef?.current) return;
 
     // Posicionar la luz y el cilindro donde quieras (ej: frente al mouse)
     const vec = new THREE.Vector3(mouse.x, mouse.y, 0.5);
@@ -19,34 +20,29 @@ export default function SaberLight({
 
     // Suavemente mover la luz y el cilindro
     lightRef.current.position.lerp(vec, 0.2);
-    cylinderRef.current.position.lerp(vec, 0.2);
-
-    // Alineá el cilindro para que quede apuntando hacia la cámara
-    cylinderRef.current.lookAt(camera.position);
+    //lightRef.current.updateMatrixWorld();
+    pointLightRef.current?.position.lerp(vec, 0.2);
+    //lightRef.current.lookAt(3, 0, 0);
+    console.log("Light position:", lightRef.current.position);
   });
 
   return (
     <>
-      {/* Luz real para iluminar */}
+      <pointLight
+        ref={pointLightRef}
+        color="red"
+        intensity={100}
+        distance={10}
+      />
       <rectAreaLight
         ref={lightRef}
         color="red"
-        intensity={10}
-        width={0.1}
-        height={1.5}
+        intensity={1}
+        width={1}
+        height={10}
         position={[0, 0, 0]}
-        rotation={[0, 0, 0]}
+        rotation={[0, Math.PI / 2, 0]}
       />
-
-      {/* Cilindro emissive pero invisible */}
-      <mesh ref={cylinderRef} position={[-1, 7, 1]}>
-        <cylinderGeometry args={[0.01, 0.01, 1.5]} />
-        <meshStandardMaterial
-          emissive="red"
-          emissiveIntensity={10000}
-          color="black"
-        />
-      </mesh>
     </>
   );
 }

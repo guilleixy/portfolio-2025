@@ -4,7 +4,7 @@ import Scene from "@/components/Three/Scene";
 export default function Home() {
   return (
     <>
-      <div className="fixed h-screen w-screen z-0">
+      <div className="fixed h-screen w-screen z-[1]">
         <Scene />
       </div>
       <Header />

@@ -4,8 +4,10 @@
   --background: #000000;
   --foreground: #ffffff;
   --color-red: #ff0000;
+  --color-blue: #0059ff;
   --color-black: #000000;
   --color-state: #ff0000;
+  --page-padding: 7rem;
 }
 
 @theme inline {

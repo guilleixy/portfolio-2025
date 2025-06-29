@@ -49,15 +49,15 @@ export default function About() {
       //     scrub: true,
       //   },
       // });
-      gsap.to(scene, {
-        environmentIntensity: 0.01,
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top center",
-          end: "center center",
-          scrub: true,
-        },
-      });
+      // gsap.to(scene, {
+      //   environmentIntensity: 0.01,
+      //   scrollTrigger: {
+      //     trigger: triggerRef.current,
+      //     start: "top center",
+      //     end: "center center",
+      //     scrub: true,
+      //   },
+      // });
     },
     { scope: triggerRef, dependencies: [camera] }
   );
@@ -82,15 +82,20 @@ export default function About() {
         </div>
       </article>
 
-      <article className="h-screen mt-72">
-        <p>
-          As an aspiring software engineer, I focus on refining my programming
-          skills at every level of abstraction to write clean and maintainable
-          code.
+      <article className="mt-86 w-full p-[var(--page-padding)] text-2xl">
+        <p className="flex flex-col text-right gap-26">
+          <span>
+            As an aspiring
+            <span className="text-[var(--color-blue)]"> software engineer</span>
+          </span>
+          <span>I focus on refining my programming skills</span>
+          <span>at every level of abstraction</span>
+          <span>to write clean and maintainable code</span>
         </p>
-        <p>
-          I have hands-on experience with web development and AI, and here are
-          some of the technologies I use the most:
+
+        <p className="text-center mt-72 flex flex-col gap-1">
+          <span>I have hands-on experience with web development and AI</span>
+          <span>these are some of the technologies I use the most:</span>
         </p>
         <ul>
           <li>NextJS</li>

@@ -9,19 +9,30 @@ export async function GET() {
       const recentlyPlayedResponse = await recentlyPlayedSongs();
       const recentlyPlayedData = await recentlyPlayedResponse.json();
 
-      return new Response(JSON.stringify(recentlyPlayedData.items[0]), {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      return new Response(
+        JSON.stringify({ source: "recentlyPlayed", data: recentlyPlayedData }),
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
     } else {
-      return new Response(currentlyPlayingResponse.body, {
-        status: currentlyPlayingResponse.status,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const currentlyPlayingData = await currentlyPlayingResponse.json();
+
+      return new Response(
+        JSON.stringify({
+          source: "currentlyPlaying",
+          data: currentlyPlayingData,
+        }),
+        {
+          status: currentlyPlayingResponse.status,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
   } catch (error) {
     log(error);

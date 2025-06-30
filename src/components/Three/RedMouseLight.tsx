@@ -23,7 +23,6 @@ export default function SaberLight({
     //lightRef.current.updateMatrixWorld();
     pointLightRef.current?.position.lerp(vec, 0.2);
     //lightRef.current.lookAt(3, 0, 0);
-    console.log("Light position:", lightRef.current.position);
   });
 
   return (

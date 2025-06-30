@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useThreeStore } from "@/store/useThreeStore";
+import TopArist from "../Spotify/TopArtist";
+import CurrentTrack from "../Spotify/CurrentTrack";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
@@ -115,6 +117,8 @@ export default function About() {
           transmiting emotions.
         </p>
         <p>I looooove music. Here you can check out my latests obsessions:</p>
+        <TopArist />
+        <CurrentTrack />
         <p>And what I am listenig right now (literally)</p>
         <p>I also love videogames, movies and anime</p>
         <p>

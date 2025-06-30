@@ -16,7 +16,7 @@ import RedMouseLight from "./RedMouseLight";
 import { useThreeStore } from "@/store/useThreeStore";
 import { useThree } from "@react-three/fiber";
 import { SceneSetup } from "./SceneSetup";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { EffectComposer, Bloom, Glitch } from "@react-three/postprocessing";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Scene() {
@@ -45,12 +45,13 @@ export default function Scene() {
             position={[-0.5, 3.3, 0.5]}
             rotation={[0.5, 0, 0]}
           />
-          <Environment preset="city" />
+          {/* <Environment preset="city" /> */}
           <RedMouseLight lightRef={redLightRef} />
           <Eva01 ref={modelRef} />
           <SceneSetup />
           {/* <EffectComposer>
             <Bloom intensity={1.5} luminanceThreshold={0.2} />
+            <Glitch mode={3} />
           </EffectComposer> */}
         </Suspense>
       </Canvas>

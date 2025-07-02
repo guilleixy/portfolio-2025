@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { useThreeStore } from "@/store/useThreeStore";
 import TopArist from "../Spotify/TopArtist";
 import CurrentTrack from "../Spotify/CurrentTrack";
+import TextEditorTab from "./TextEditorTab";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
@@ -85,15 +86,7 @@ export default function About() {
       </article>
 
       <article className="mt-86 w-full p-[var(--page-padding)] text-2xl">
-        <p className="flex flex-col text-right gap-26">
-          <span>
-            As an aspiring
-            <span className="text-[var(--color-blue)]"> software engineer</span>
-          </span>
-          <span>I focus on refining my programming skills</span>
-          <span>at every level of abstraction</span>
-          <span>to write clean and maintainable code</span>
-        </p>
+        <TextEditorTab />
 
         <p className="text-center mt-72 flex flex-col gap-1">
           <span>I have hands-on experience with web development and AI</span>

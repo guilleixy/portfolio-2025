@@ -7,6 +7,7 @@ import { useThreeStore } from "@/store/useThreeStore";
 import TopArist from "../Spotify/TopArtist";
 import CurrentTrack from "../Spotify/CurrentTrack";
 import TextEditorTab from "./TextEditorTab";
+import AnimationShowcase from "./AnimationShowcase";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
@@ -26,8 +27,8 @@ export default function About() {
         ease: "power1.in",
         scrollTrigger: {
           trigger: triggerRef.current,
-          start: "top center",
-          end: "center center",
+          start: "top top",
+          end: "center top",
           scrub: true,
         },
       });
@@ -36,8 +37,8 @@ export default function About() {
         ease: "power1.in",
         scrollTrigger: {
           trigger: triggerRef.current,
-          start: "top center",
-          end: "center center",
+          start: "top top",
+          end: "center top",
           scrub: true,
         },
       });
@@ -66,21 +67,21 @@ export default function About() {
   );
   return (
     <section id="about" className="">
-      <article className="h-screen relative">
+      <article className="relative  h-[150vh]">
         <p>I'd say I have</p>
-        <div ref={triggerRef} className="relative">
+        <div ref={triggerRef} className=" sticky top-0">
           <div
             ref={gradientTopRef}
             id="two-sides-gradient-top"
-            className="bg-gradient-to-b from-[var(--color-black)] to-[var(--color-red)] h-104 w-full z-1 relative "
+            className="bg-gradient-to-b from-[var(--color-black)] to-[var(--color-red)] h-[50vh] w-full z-1 relative"
           ></div>
-          <p className="absolute flex inset-0 items-center justify-center z-0 text-9xl text-[var(--color-state)] tracking-widest transform scale-y-95">
+          <p className="absolute flex inset-0 items-center justify-center z-0 text-9xl text-[var(--color-state)] tracking-widest transform scale-y-100 font-akira">
             TWO SIDES
           </p>
           <div
             ref={gradientBottomRef}
             id="two-sides-gradient-bottom"
-            className="bg-gradient-to-b from-[var(--color-state)] to-[var(--color-black)] h-104 w-full z-1 relative"
+            className="bg-gradient-to-b from-[var(--color-state)] to-[var(--color-black)] h-[50vh] w-full z-1 relative"
           ></div>
         </div>
       </article>
@@ -128,6 +129,7 @@ export default function About() {
           And now i am focusing on creating a clear visual identity for the band
         </p>
       </article>
+      <AnimationShowcase />
     </section>
   );
 }

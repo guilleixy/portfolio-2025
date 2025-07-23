@@ -25,6 +25,19 @@ const helvetica = localFont({
   adjustFontFallback: "Times New Roman",
 });
 
+const akira = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Akira-Expanded.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-akira",
+  display: "swap",
+  adjustFontFallback: "Times New Roman",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${helvetica.variable} antialiased relative`}>
+      <body className={`${akira.variable} antialiased relative`}>
         {children}
       </body>
     </html>

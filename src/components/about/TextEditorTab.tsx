@@ -26,13 +26,19 @@ export default function TextEditorTab() {
   ];
 
   return (
-    <div className="backdrop-blur-sm border-1 border-white p-2 inline-block text-white/30">
+    <div className="backdrop-blur-sm  inline-block text-white/20">
+      <div>
+        <div className="border-1 border-white border-b-0 inline-block p-2">Intro.tsx</div>
+      </div>
+      <div className="p-2 border-1 border-white ">
       {lines.map((line, idx) => (
         <div className="flex items-center" key={idx}>
           <div>{String(idx + 1).padStart(3, "0")}</div>
           {line}
         </div>
       ))}
+      </div>
+
     </div>
   );
 }

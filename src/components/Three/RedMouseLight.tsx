@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
+import useMousePosition from "@/hooks/useMousePosition";
 
 export default function SaberLight({
   lightRef,
@@ -11,11 +12,16 @@ export default function SaberLight({
   const { mouse, camera } = useThree();
   RectAreaLightUniformsLib.init();
   const pointLightRef = useRef<THREE.PointLight | THREE.RectAreaLight>(null);
+  const mousePos = useMousePosition();
   useFrame(() => {
     if (!camera || !lightRef?.current) return;
 
     // Posicionar la luz y el cilindro donde quieras (ej: frente al mouse)
-    const vec = new THREE.Vector3(mouse.x, mouse.y, 0.5);
+    //const vec = new THREE.Vector3(mouse.x, mouse.y, 0.5);
+
+    const vec = new THREE.Vector3(mousePos.x * 0.01, mousePos.y * 0.01, 0.5);
+    console.log("Mouse Position:", mousePos);
+
     vec.unproject(camera);
 
     // Suavemente mover la luz y el cilindro
